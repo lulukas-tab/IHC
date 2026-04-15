@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Avaliação Prática - Desenvolvimento Web Acessível</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>EcoConecta</h1>
+            <nav>
+                <ul>
+                    <li><a href="#sobre">Sobre</a></li>
+                    <li><a href="#servicos">Serviços</a></li>
+                    <li><a href="#contato">Contato</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section id="sobre" class="container">
+            <h2>Sobre o Projeto</h2>
+            <p>Este projeto foi desenvolvido como parte de uma atividade avaliativa, focando em <strong>HTML semântico</strong>, <strong>CSS moderno</strong> e <strong>acessibilidade digital</strong> seguindo as diretrizes do eMAG.</p>
+            <div class="image-placeholder">
+                <img src="https://picsum.photos/800/400" alt="Imagem ilustrativa de uma paisagem natural com tecnologia sustentável, representando a conexão entre ecologia e inovação.">
+            </div>
+        </section>
+
+        <section id="servicos" class="container">
+            <h2>Nossos Serviços</h2>
+            <div class="cards-container">
+                <article class="card">
+                    <h3>Consultoria Web</h3>
+                    <p>Análise completa de acessibilidade e performance para sites governamentais e privados.</p>
+                    <a href="#saiba-mais-consultoria" class="btn-card" aria-label="Saiba mais sobre Consultoria Web">Saiba Mais</a>
+                </article>
+                <article class="card">
+                    <h3>Design Responsivo</h3>
+                    <p>Criação de interfaces que se adaptam perfeitamente a qualquer tamanho de tela, de celulares a desktops.</p>
+                    <a href="#saiba-mais-design" class="btn-card" aria-label="Saiba mais sobre Design Responsivo">Saiba Mais</a>
+                </article>
+                <article class="card">
+                    <h3>Treinamentos</h3>
+                    <p>Capacitação em boas práticas de codificação e padrões digitais de governo.</p>
+                    <a href="#saiba-mais-treinamentos" class="btn-card" aria-label="Saiba mais sobre Treinamentos">Saiba Mais</a>
+                </article>
+            </div>
+        </section>
+
+        <section id="contato" class="container">
+            <h2>Entre em Contato</h2>
+            <p>Preencha o formulário abaixo para solicitar um orçamento ou tirar suas dúvidas.</p>
+            <form action="#" method="POST">
+                <div class="form-group">
+                    <label for="nome">Nome Completo:</label>
+                    <input type="text" id="nome" name="nome" required placeholder="Digite seu nome">
+                </div>
+
+                <div class="form-group">
+                    <label for="email">E-mail:</label>
+                    <input type="email" id="email" name="email" required placeholder="seuemail@exemplo.com">
+                </div>
+
+                <div class="form-group">
+                    <label for="assunto">Assunto:</label>
+                    <select id="assunto" name="assunto">
+                        <option value="duvida">Dúvida</option>
+                        <option value="orcamento">Orçamento</option>
+                        <option value="feedback">Feedback</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="mensagem">Mensagem:</label>
+                    <textarea id="mensagem" name="mensagem" rows="5" required placeholder="Como podemos ajudar?"></textarea>
+                </div>
+
+                <button type="submit" class="btn-submit">Enviar Mensagem</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 EcoConecta - Atividade Avaliativa de Desenvolvimento Web. Desenvolvido com foco em acessibilidade.</p>
+        </div>
+    </footer>
+</body>
+</html>
