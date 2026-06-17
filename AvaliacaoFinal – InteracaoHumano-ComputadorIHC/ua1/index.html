@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Melhoria de UI - Folha de Pagamento</title>
+<style>
+  /* Estilos gerais para simular o fundo da tela */
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #008eb3; /* Cor de fundo azul semelhante à imagem */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+  }
+
+  /* Estilos do Modal (Caixa de diálogo) */
+  .modal {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    text-align: center;
+    max-width: 450px;
+    width: 90%;
+  }
+
+  .modal-title {
+    font-size: 1.1em;
+    font-weight: 700;
+    color: #333333;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .modal-text {
+    font-size: 1.05em;
+    color: #444444;
+    margin-bottom: 30px;
+    line-height: 1.5;
+  }
+
+  .warning-text {
+    display: block;
+    color: #d9534f; /* Vermelho de alerta */
+    font-size: 0.85em;
+    margin-top: 10px;
+    font-weight: 600;
+  }
+
+  /* Organização dos botões */
+  .button-group {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+  }
+
+  /* Estilo base dos botões */
+  .btn {
+    flex: 1;
+    padding: 12px 15px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.1s;
+  }
+
+  .btn:active {
+    transform: scale(0.98);
+  }
+
+  /* Botão de Cancelar (Ação Segura) */
+  .btn-cancel {
+    background-color: #f0f0f0;
+    color: #555555;
+    border: 1px solid #cccccc;
+  }
+
+  .btn-cancel:hover {
+    background-color: #e4e4e4;
+  }
+
+  /* Botão de Excluir (Ação Destrutiva/Perigosa) */
+  .btn-delete {
+    background-color: #d9534f;
+    color: white;
+  }
+
+  .btn-delete:hover {
+    background-color: #c9302c;
+  }
+</style>
+</head>
+<body>
+
+<div class="modal">
+  <div class="modal-title">Sistema de Folha de Pagamento</div>
+  
+  <div class="modal-text">
+    Tem certeza de que deseja <strong>excluir</strong> o registro deste usuário?
+    <span class="warning-text">Atenção: Esta ação é permanente e não poderá ser desfeita.</span>
+  </div>
+  
+  <div class="button-group">
+    <button class="btn btn-cancel">Cancelar</button>
+    <button class="btn btn-delete">Excluir Usuário</button>
+  </div>
+</div>
+
+</body>
+</html>
