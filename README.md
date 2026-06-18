@@ -32,6 +32,17 @@ Abaixo, você confere um resumo de cada projeto desenvolvido:
 ---
 *Avaliação desenvolvida e entregue por Lucas Almeida (RA: 22403149).* 
 
+#  Dashboard Fila Transparente SUS
+Link: https://singular-cuchufli-bbda6b.netlify.app
+
+![Status do Projeto](https://img.shields.io/badge/Status-Em_Desenvolvimento-green)
+![Linguagem](https://img.shields.io/badge/HTML5-E34F26?style=flat&logo=html5&logoColor=white)
+![Linguagem](https://img.shields.io/badge/CSS3-1572B6?style=flat&logo=css3&logoColor=white)
+
+##  Sobre o Projeto
+Este projeto nasceu como parte da disciplina de **Interação-Humano-Computador (IHC) e Projeto Integrador I** do curso de Ciência da Computação e servirá como base de interface para o meu futuro Trabalho de Conclusão de Curso (TCC). 
+O objetivo é propor uma solução tecnológica para um dos maiores gargalos da saúde pública no Brasil: **a transparência e o acompanhamento das filas do Sistema Único de Saúde (SUS)**. O foco inicial deste repositório é o desenvolvimento de formulários web semânticos, 100% acessíveis e responsivos.
+
 # acessibilidade-digital-ihc
 
 ##Link do site: https://chic-kitsune-37e54f.netlify.app
