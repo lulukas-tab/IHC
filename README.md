@@ -43,6 +43,15 @@ Link: https://singular-cuchufli-bbda6b.netlify.app
 Este projeto nasceu como parte da disciplina de **Interação-Humano-Computador (IHC) e Projeto Integrador I** do curso de Ciência da Computação e servirá como base de interface para o meu futuro Trabalho de Conclusão de Curso (TCC). 
 O objetivo é propor uma solução tecnológica para um dos maiores gargalos da saúde pública no Brasil: **a transparência e o acompanhamento das filas do Sistema Único de Saúde (SUS)**. O foco inicial deste repositório é o desenvolvimento de formulários web semânticos, 100% acessíveis e responsivos.
 
+# Avaliação 2 (IHC)
+
+# 🌿 EcoConecta - Desenvolvimento Web Acessível
+ https://spiffy-starship-721768.netlify.app
+
+
+Este projeto foi desenvolvido como parte de uma **Atividade Avaliativa de Desenvolvimento Web**, com foco em criar uma página institucional moderna, responsiva e, acima de tudo, **totalmente acessível**, seguindo as diretrizes do **eMAG (Modelo de Acessibilidade em Governo Eletrônico)**.
+
+
 # acessibilidade-digital-ihc
 
 ##Link do site: https://chic-kitsune-37e54f.netlify.app
