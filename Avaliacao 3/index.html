@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GranDIHC-BR: A Jornada da Acessibilidade</title>
+  <style>
+    :root {
+      --primary-color: #2b5797;
+      --primary-dark: #1e3a6d;
+      --secondary-color: #00a1f1;
+      --bg-color: #f3f4f6;
+      --card-bg: #ffffff;
+      --text-color: #333333;
+      --correct-color: #2e7d32;
+      --wrong-color: #c62828;
+      --font-size-base: 16px;
+    }
+
+    
+    body.high-contrast {
+      --primary-color: #ffff00;
+      --primary-dark: #000000;
+      --secondary-color: #ffffff;
+      --bg-color: #000000;
+      --card-bg: #121212;
+      --text-color: #ffffff;
+      --correct-color: #00ff00;
+      --wrong-color: #ff0000;
+    }
+
+    * {
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      font-size: var(--font-size-base);
+      line-height: 1.6;
+    }
+
+    header {
+      background-color: var(--primary-dark);
+      color: #ffffff;
+      padding: 15px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      border-bottom: 3px solid var(--primary-color);
+    }
+
+    body.high-contrast header {
+      color: var(--primary-color);
+      border-bottom: 3px solid var(--primary-color);
+    }
+
+    .header-title h1 {
+      margin: 0;
+      font-size: 1.4rem;
+    }
+
+    .header-title p {
+      margin: 5px 0 0 0;
+      font-size: 0.9rem;
+      opacity: 0.8;
+    }
+
+    .accessibility-panel {
+      display: flex;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .acc-btn {
+      background-color: var(--card-bg);
+      color: var(--text-color);
+      border: 2px solid var(--primary-color);
+      padding: 6px 12px;
+      cursor: pointer;
+      font-weight: bold;
+      border-radius: 4px;
+      font-size: 0.9rem;
+    }
+
+    .acc-btn:hover,
+    .acc-btn:focus {
+      background-color: var(--primary-color);
+      color: #fff;
+      outline: 2px solid var(--secondary-color);
+    }
+
+    main {
+      max-width: 800px;
+      margin: 30px auto;
+      padding: 0 20px;
+    }
+
+    .game-container {
+      background-color: var(--card-bg);
+      border-radius: 8px;
+      padding: 30px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      border: 1px solid rgba(0, 0, 0, 0.05);
+    }
+
+    body.high-contrast .game-container {
+      border: 2px solid #fff;
+      box-shadow: none;
+    }
+
+    .screen {
+      display: none;
+    }
+
+    .screen.active {
+      display: block;
+    }
+
+   
+    .welcome-screen {
+      text-align: center;
+    }
+
+    .welcome-screen h2 {
+      color: var(--primary-color);
+      font-size: 2rem;
+      margin-bottom: 15px;
+    }
+
+    .badge-container {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin: 20px 0;
+      flex-wrap: wrap;
+    }
+
+    .badge {
+      background: #e2e8f0;
+      color: #1e293b;
+      padding: 5px 12px;
+      border-radius: 15px;
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+
+    body.high-contrast .badge {
+      background: #fff;
+      color: #000;
+      border: 1px solid #000;
+    }
+
+    
+    .progress-bar-container {
+      background-color: #e0e0e0;
+      border-radius: 10px;
+      height: 12px;
+      width: 100%;
+      margin-bottom: 25px;
+      overflow: hidden;
+    }
+
+    .progress-bar {
+      background-color: var(--secondary-color);
+      height: 100%;
+      width: 0%;
+      transition: width 0.4s ease;
+    }
+
+    body.high-contrast .progress-bar {
+      background-color: var(--primary-color);
+    }
+
+    .stats-row {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 15px;
+      font-weight: bold;
+      font-size: 1.1rem;
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 10px;
+    }
+
+    .scenario-box {
+      background-color: rgba(0, 161, 241, 0.05);
+      border-left: 5px solid var(--secondary-color);
+      padding: 15px;
+      margin-bottom: 25px;
+      border-radius: 0 4px 4px 0;
+    }
+
+    body.high-contrast .scenario-box {
+      border: 1px solid #fff;
+      border-left: 5px solid var(--primary-color);
+      background: transparent;
+    }
+
+    .options-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .option-btn {
+      background-color: var(--card-bg);
+      color: var(--text-color);
+      border: 2px solid #ccc;
+      padding: 15px;
+      text-align: left;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 1rem;
+      font-weight: 500;
+    }
+
+    .option-btn:hover,
+    .option-btn:focus {
+      border-color: var(--primary-color);
+      background-color: rgba(43, 87, 151, 0.05);
+      outline: none;
+    }
+
+    body.high-contrast .option-btn:hover {
+      background-color: #333;
+    }
+
+   
+    .feedback-box {
+      margin-top: 20px;
+      padding: 15px;
+      border-radius: 6px;
+      display: none;
+      font-weight: bold;
+    }
+
+    .feedback-box.correct {
+      display: block;
+      background-color: rgba(46, 125, 50, 0.1);
+      color: var(--correct-color);
+      border: 2px solid var(--correct-color);
+    }
+
+    .feedback-box.wrong {
+      display: block;
+      background-color: rgba(198, 40, 40, 0.1);
+      color: var(--wrong-color);
+      border: 2px solid var(--wrong-color);
+    }
+
+    .action-btn {
+      background-color: var(--primary-color);
+      color: white;
+      border: none;
+      padding: 12px 30px;
+      font-size: 1.1rem;
+      font-weight: bold;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-top: 20px;
+      display: inline-block;
+    }
+
+    .action-btn:hover,
+    .action-btn:focus {
+      background-color: var(--primary-dark);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    body.high-contrast .action-btn {
+      background-color: var(--primary-color);
+      color: #000;
+      border: 2px solid #fff;
+    }
+
+    body.high-contrast .action-btn:hover {
+      background-color: #fff;
+      color: #000;
+    }
+
+    
+    .score-display {
+      font-size: 3rem;
+      font-weight: bold;
+      color: var(--primary-color);
+      margin: 20px 0;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 40px;
+      padding: 20px;
+      font-size: 0.9rem;
+      color: #666;
+      border-top: 1px solid #ddd;
+    }
+
+    body.high-contrast footer {
+      color: #fff;
+      border-top: 1px solid #fff;
+    }
+  </style>
+</head>
+
+<body>
+
+  <header role="banner">
+    <div class="header-title">
+      <h1>IHC Lab: Missão GranDIHC-BR</h1>
+      <p>Desafios de IHC no Brasil (2025-2035) & Acessibilidade</p>
+    </div>
+    <div class="accessibility-panel" aria-label="Painel de Acessibilidade">
+      <button class="acc-btn" onclick="toggleHighContrast()" aria-label="Alternar Alto Contraste">Contraste 🌓</button>
+      <button class="acc-btn" onclick="changeFontSize(2)" aria-label="Aumentar Fonte">A+ 🔍</button>
+      <button class="acc-btn" onclick="changeFontSize(-2)" aria-label="Diminuir Fonte">A- 🔎</button>
+    </div>
+  </header>
+
+  <main role="main">
+    <div class="game-container">
+
+      <div id="welcome-screen" class="screen active">
+        <h2>Você aceita o desafio da inclusão?</h2>
+        <p>Bem-vindo ao simulador gamificado do <strong>IHC Lab (CEUB)</strong>. Como futuro especialista em Interação Humano-Computador, sua missão é analisar cenários reais enfrentados por cidadãos brasileiros e aplicar diretrizes do <strong>eMAG</strong>, <strong>WCAG</strong> e os eixos estratégicos do <strong>GranDIHC-BR (2025-2035)</strong> para criar soluções digitais acessíveis, éticas e decoloniais.</p>
+
+        <div class="badge-container">
+          <span class="badge">eMAG</span>
+          <span class="badge">WCAG Adaptado</span>
+          <span class="badge">Justiça Social</span>
+          <span class="badge">GranDIHC-BR</span>
+        </div>
+
+        <p><strong>Duração aproximada:</strong> 5 a 10 minutos. Pratique IHC de forma empática e conquiste sua certificação digital!</p>
+        <button class="action-btn" onclick="startGame()">Iniciar Missão</button>
+      </div>
+
+      <div id="game-screen" class="screen">
+        <div class="progress-bar-container">
+          <div id="progress" class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+        </div>
+
+        <div class="stats-row">
+          <span id="phase-label">Fase: 1/5</span>
+          <span id="score-label">Pontos: 0</span>
+        </div>
+
+        <div class="scenario-box">
+          <h3 id="scenario-title" style="margin-top:0;">Carregando cenário...</h3>
+          <p id="scenario-desc">Descrição do problema...</p>
+        </div>
+
+        <div id="options" class="options-list">
+        </div>
+
+        <div id="feedback" class="feedback-box">
+        </div>
+
+        <button id="next-btn" class="action-btn" style="display:none;" onclick="nextPhase()">Avançar Jornada</button>
+      </div>
+
+      <div id="end-screen" class="screen" style="text-align: center;">
+        <h2>Missão Cumprida! 🎉</h2>
+        <p>Você percorreu os principais desafios de IHC e Barreiras Digitais no cenário nacional.</p>
+        <div class="score-display"><span id="final-score">0</span> / 500</div>
+        <p id="performance-feedback"></p>
+
+        <div style="background: rgba(0,161,241,0.05); padding: 15px; border-radius: 6px; text-align: left; margin: 20px 0; border: 1px solid var(--primary-color);">
+          <h4 style="margin-top:0; color:var(--primary-color);">Conexão Acadêmica:</h4>
+          <p style="margin-bottom:0; font-size:0.95rem;">Protótipo gerado para a Oficina "IHC Lab: Challenges & Desafios" conduzida pela <strong>Profa. Kadidja Valéria de Oliveira</strong>. Pronto para ser indexado no seu relatório do GitHub!</p>
+        </div>
+
+        <button class="action-btn" onclick="restartGame()">Jogar Novamente</button>
+      </div>
+
+    </div>
+  </main>
+
+  <footer>
+    <p><strong>Desenvolvido por Lucas Almeida</strong> para fins educacionais - <strong>Centro Universitário de Brasília (CEUB)</strong>.<br> Alinhado às diretrizes de Acessibilidade Digital Brasileira (Conecta CEUB).</p>
+  </footer>
+
+  <script>
+   
+    const scenarios = [
+      {
+        title: "Fase 1: O Portal de Saúde Pública (eMAG)",
+        desc: "Dona Maria, 62 anos, tenta utilizar o portal do SUS para agendar uma vacina usando um leitor de telas. Ela trava ao chegar em uma tabela de datas importantes, pois a plataforma apenas exibe imagens gráficas sem equivalentes textuais ou tags semânticas estruturadas.",
+        options: [
+          { text: "Aumentar apenas o tamanho das imagens para facilitar a visualização.", correct: false },
+          { text: "Substituir a tabela por um arquivo PDF estático e compactado para download.", correct: false },
+          { text: "Aplicar a diretriz do eMAG utilizando tabelas estruturadas em HTML semântico (th, scope) e prover descrição textual alternativa (alt) detalhada para todos os elementos não textuais relevantes.", correct: true },
+          { text: "Remover a tabela e exigir que o usuário ligue para o suporte telefônico se tiver dúvidas.", correct: false }
+        ],
+        explanation: "Correto! O Modelo de Acessibilidade em Governo Eletrônico (eMAG) exige o uso rigoroso de HTML semântico para garantir que leitores de tela interpretem tabelas e elementos visuais de maneira coerente para usuários com deficiência visual."
+      },
+      {
+        title: "Fase 2: Algoritmos de Triagem e Justiça Social (Ética / IA)",
+        desc: "Uma grande autarquia federal adota um sistema de Inteligência Artificial para analisar currículos de programas sociais. No entanto, pesquisadores de IHC notam que a IA está rejeitando de forma desproporcional candidaturas de periferias, devido a vieses históricos embutidos na base de dados de treinamento.",
+        options: [
+          { text: "Ignorar o problema, já que algoritmos matemáticos são neutros por natureza.", correct: false },
+          { text: "Aplicar o Eixo de Ética / IA do GranDIHC-BR, estabelecendo auditorias constantes, transparência algorítmica e refinamento participativo dos critérios de inteligência artificial para mitigar discriminações estruturais.", correct: true },
+          { text: "Trocar o servidor onde a IA está rodando por um hardware mais rápido.", correct: false },
+          { text: "Tornar o código fechado e secreto para evitar que os usuários reclamem do viés.", correct: false }
+        ],
+        explanation: "Excelente! O eixo de Ética e IA do GranDIHC-BR (2025-2035) preconiza que a inteligência artificial deve apoiar o bem-estar humano de forma justa, transparente e auditável, coibindo preconceitos ocultados em dados corporativos ou governamentais."
+      },
+      {
+        title: "Fase 3: Tecnologias Emergentes no Interior (Decolonialidade)",
+        desc: "Uma EdTech do Sul do Brasil projeta um aplicativo de gamificação educacional para escolas rurais do Nordeste. O fluxo de navegação exige conexões de ultravelocidade (5G) e utiliza metáforas urbanas e estrangeiras distantes do cotidiano dos alunos locais, gerando frustração e abandono.",
+        options: [
+          { text: "Treinar os alunos para pensarem como moradores de grandes capitais estrangeiras antes de usar o app.", correct: false },
+          { text: "Abandonar completamente o uso de tecnologia e retornar exclusivamente ao papel.", correct: false },
+          { text: "Reprojetar a interface sob a ótica da Decolonialidade e Design Participativo, adaptando os conteúdos ao contexto sociocultural, linguístico e à infraestrutura de conectividade intermitente (offline-first) da comunidade local.", correct: true },
+          { text: "Oferecer descontos financeiros no aplicativo para motivá-los a continuar.", correct: false }
+        ],
+        explanation: "Exatamente! Pensar IHC no Brasil sob a ótica da Decolonialidade significa romper com padrões hegemônicos importados que ignoram a diversidade e desigualdade estrutural do território nacional, valorizando saberes regionais e realidades de infraestrutura."
+      },
+      {
+        title: "Fase 4: A Rota dos Formulários (WCAG Adaptado)",
+        desc: "Ao tentar se inscrever em um vestibular público, um estudante com deficiência motora severa não consegue navegar pelo teclado (Tab) e depara-se com um formulário que apaga todos os dados digitados se ele cometer um único erro, sem indicar textualmente onde está a falha.",
+        options: [
+          { text: "Estilizar o formulário com cores neon chamativas para destacar o erro.", correct: false },
+          { text: "Cumprir as WCAG adaptadas, garantindo navegação completa via teclado, foco visual nítido e fornecendo mensagens de erro claras por texto perto do campo incorreto, sem limpar os campos válidos preenchidos.", correct: true },
+          { text: "Aumentar o tempo limite de preenchimento para 5 horas sem mexer na estrutura lógica do formulário.", correct: false },
+          { text: "Inserir um CAPTCHA sonoro extremamente rápido para validar a segurança da inscrição.", correct: false }
+        ],
+        explanation: "Correto! As diretrizes globais da WCAG adaptadas ao cenário brasileiro exigem foco claro em acessibilidade mecânica (teclado), tolerância a erros e feedback contextualizado para garantir a autonomia do usuário."
+      },
+      {
+        title: "Fase 5: Vazamento e Transparência (Humano-Dados)",
+        desc: "Um aplicativo de monitoramento de saúde pública coleta dados de geolocalização e biometria de milhões de cidadãos. No entanto, os usuários não encontram nenhuma interface clara ou painel que explique de forma simples como seus dados sensíveis são gerenciados, violando o princípio da autodeterminação informativa.",
+        options: [
+          { text: "Publicar um documento de Termos de Uso com 80 páginas em jargão puramente jurídico.", correct: false },
+          { text: "Ocultar os dados sensíveis atrás de um paywall de segurança.", correct: false },
+          { text: "Desenvolver painéis e cockpits de privacidade baseados no Eixo Humano-Dados do GranDIHC-BR, traduzindo fluxos de dados complexos em representações visuais acessíveis, permitindo o controle intuitivo do consentimento pelos cidadãos.", correct: true },
+          { text: "Parar de coletar dados e congelar as atualizações do aplicativo por tempo indeterminado.", correct: false }
+        ],
+        explanation: "Perfeito! O eixo Humano-Dados preconiza criar metodologias e mecanismos de IHC que facilitem o entendimento sobre a coleta e tratamento massivo de dados de forma inclusiva, empoderando o cidadão sobre sua própria privacidade."
+      }
+    ];
+
+    let currentPhase = 0;
+    let score = 0;
+    let canAnswer = true;
+
+  
+    function startGame() {
+      document.getElementById("welcome-screen").classList.remove("active");
+      document.getElementById("game-screen").classList.add("active");
+      loadPhase();
+    }
+
+    function loadPhase() {
+      canAnswer = true;
+      document.getElementById("next-btn").style.display = "none";
+
+      const feedbackBox = document.getElementById("feedback");
+      feedbackBox.style.display = "none";
+      feedbackBox.className = "feedback-box";
+
+      
+      const phaseData = scenarios[currentPhase];
+      document.getElementById("phase-label").innerText = `Fase: ${currentPhase + 1}/${scenarios.length}`;
+      document.getElementById("score-label").innerText = `Pontos: ${score}`;
+      document.getElementById("scenario-title").innerText = phaseData.title;
+      document.getElementById("scenario-desc").innerText = phaseData.desc;
+
+      
+      const pct = ((currentPhase) / scenarios.length) * 100;
+      const progress = document.getElementById("progress");
+      progress.style.width = pct + "%";
+      progress.setAttribute("aria-valuenow", pct);
+
+      const optionsContainer = document.getElementById("options");
+      optionsContainer.innerHTML = "";
+
+      phaseData.options.forEach((opt, idx) => {
+        const btn = document.createElement("button");
+        btn.className = "option-btn";
+        btn.innerText = opt.text;
+        btn.setAttribute("aria-label", `Opção ${idx + 1}: ${opt.text}`);
+        btn.onclick = () => checkAnswer(opt, btn);
+        optionsContainer.appendChild(btn);
+      });
+    }
+
+    function checkAnswer(option, selectedButton) {
+      if (!canAnswer) return;
+      canAnswer = false;
+
+      const feedbackBox = document.getElementById("feedback");
+      const allOptionButtons = document.querySelectorAll(".option-btn");
+
+     
+      allOptionButtons.forEach(btn => btn.setAttribute("disabled", "true"));
+
+      if (option.correct) {
+        score += 100;
+        feedbackBox.innerText = "⭐ CORRETO! " + scenarios[currentPhase].explanation;
+        feedbackBox.classList.add("correct");
+        selectedButton.style.borderColor = "var(--correct-color)";
+        selectedButton.style.backgroundColor = "rgba(46,125,50,0.1)";
+        playSound('correct');
+      } else {
+        feedbackBox.innerText = "❌ Ops! Essa não é a melhor alternativa. " + scenarios[currentPhase].explanation;
+        feedbackBox.classList.add("wrong");
+        selectedButton.style.borderColor = "var(--wrong-color)";
+        selectedButton.style.backgroundColor = "rgba(198,40,40,0.1)";
+        playSound('wrong');
+      }
+
+      document.getElementById("score-label").innerText = `Pontos: ${score}`;
+      document.getElementById("next-btn").style.display = "inline-block";
+      document.getElementById("next-btn").focus();
+    }
+
+    function nextPhase() {
+      currentPhase++;
+      if (currentPhase < scenarios.length) {
+        loadPhase();
+      } else {
+        endGame();
+      }
+    }
+
+    function endGame() {
+      document.getElementById("game-screen").classList.remove("active");
+      document.getElementById("end-screen").classList.add("active");
+
+      
+      document.getElementById("progress").style.width = "100%";
+
+      document.getElementById("final-score").innerText = score;
+      playSound('win');
+
+      const perfText = document.getElementById("performance-feedback");
+      if (score === 500) {
+        perfText.innerHTML = "🏆 <strong>Impressionante!</strong> Você demonstrou domínio completo dos eixos de IHC e das diretrizes brasileiras de acessibilidade (eMAG/WCAG). Pronto para liderar a inovação inclusiva!";
+      } else if (score >= 300) {
+        perfText.innerHTML = "👍 <strong>Muito bom!</strong> Você tem uma ótima noção de design inclusivo, mas revise os eixos éticos e decoloniais do GranDIHC-BR para mitigar mais barreiras.";
+      } else {
+        perfText.innerHTML = "📚 <strong>Bons reflexos!</strong> Vale a pena reler as referências da Sociedade Brasileira de Computação (SBC) para fortalecer os conceitos de IHC Social.";
+      }
+    }
+
+    function restartGame() {
+      currentPhase = 0;
+      score = 0;
+      document.getElementById("end-screen").classList.remove("active");
+      document.getElementById("welcome-screen").classList.add("active");
+    }
+
+
+    function toggleHighContrast() {
+      document.body.classList.toggle("high-contrast");
+    }
+
+    function changeFontSize(action) {
+      const root = document.documentElement;
+      let currentSize = parseFloat(getComputedStyle(document.body).fontSize);
+      let newSize = currentSize + action;
+      if (newSize >= 12 && newSize <= 26) {
+        document.body.style.fontSize = newSize + "px";
+      }
+    }
+
+    function playSound(type) {
+      try {
+        const ctx = new (window.AudioContext || window.webkitAudioContext)();
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+
+        if (type === 'correct') {
+          osc.frequency.setValueAtTime(587.33, ctx.currentTime);
+          osc.frequency.setValueAtTime(880, ctx.currentTime + 0.1);
+          gain.gain.setValueAtTime(0.1, ctx.currentTime);
+          gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.25);
+          osc.start(); osc.stop(ctx.currentTime + 0.25);
+        } else if (type === 'wrong') {
+          osc.frequency.setValueAtTime(220, ctx.currentTime);
+          osc.frequency.linearRampToValueAtTime(110, ctx.currentTime + 0.2);
+          gain.gain.setValueAtTime(0.15, ctx.currentTime);
+          gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.25);
+          osc.start(); osc.stop(ctx.currentTime + 0.25);
+        } else if (type === 'win') {
+          osc.type = 'triangle';
+          const notes = [261.63, 329.63, 392.00, 523.25];
+          notes.forEach((freq, i) => {
+            osc.frequency.setValueAtTime(freq, ctx.currentTime + (i * 0.1));
+          });
+          gain.gain.setValueAtTime(0.15, ctx.currentTime);
+          gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.5);
+          osc.start(); osc.stop(ctx.currentTime + 0.5);
+        }
+      } catch (e) {
+        console.log("Áudio não suportado no contexto atual.");
+      }
+    }
+  </script>
+</body>
+
+</html>
