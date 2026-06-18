@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard Fila Transparente SUS</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <main class="container">
+    <header>
+      <h1>Dashboard de Filas do SUS</h1>
+      <p>Acompanhe e receba atualizações sobre a fila de espera do Sistema Único de Saúde.</p>
+    </header>
+
+    <section class="form-section">
+      <form action="#" method="POST">
+        <fieldset>
+          <legend>Cadastre-se para Alertas da Fila</legend>
+          <p class="instrucoes">Receba notificações no seu e-mail sempre que a fila andar ou houver novas vagas.</p>
+
+          <div class="form-group">
+            <label for="nome">Nome completo:</label>
+            <input type="text" id="nome" name="nome" placeholder="Digite seu nome completo" required aria-required="true">
+          </div>
+
+          <div class="form-group">
+            <label for="email">E-mail:</label>
+            <input type="email" id="email" name="email" placeholder="exemplo@email.com" required aria-required="true">
+          </div>
+
+          <div class="form-group checkbox-group">
+            <input type="checkbox" id="consentimento" name="consentimento" required aria-required="true">
+            <label for="consentimento">
+              Concordo em receber e-mails sobre atualizações do SUS e aceito os termos da LGPD.
+            </label>
+          </div>
+
+          <button type="submit" class="btn-primary">Cadastrar para Alertas</button>
+        </fieldset>
+      </form>
+    </section>
+
+    <section class="form-section">
+      <form action="#" method="GET" class="search-form">
+        <fieldset>
+          <legend>Consultar Posição na Fila</legend>
+          <p class="instrucoes">Digite o número do seu Cartão Nacional de Saúde (CNS) para ver sua posição.</p>
+
+          <div class="form-group">
+            <label for="cartao_sus">Número do Cartão SUS:</label>
+            <div class="search-input-group">
+              <input type="text" id="cartao_sus" name="cartao_sus" placeholder="Ex: 7000 0000 0000 000" pattern="\d*" title="Digite apenas números" required aria-required="true">
+              <button type="submit" class="btn-secondary">Pesquisar</button>
+            </div>
+          </div>
+        </fieldset>
+      </form>
+    </section>
+  </main>
+
+</body>
+
+</html>
