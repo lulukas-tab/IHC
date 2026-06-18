@@ -31,3 +31,12 @@ Abaixo, você confere um resumo de cada projeto desenvolvido:
 
 ---
 *Avaliação desenvolvida e entregue por Lucas Almeida (RA: 22403149).* 
+
+# acessibilidade-digital-ihc
+
+##Link do site: https://chic-kitsune-37e54f.netlify.app
+
+# Avaliação 3 — IHC Lab: Grandes Desafios de IHC no Brasil (2025-2035)
+
+Este repositório contém o relatório acadêmico detalhado e a implementação do protótipo de jogo educacional interativo focando na prospecção de soluções para as barreiras de acessibilidade digital e os eixos estratégicos do **GranDIHC-BR**, desenvolvidos para a **Oficina "IHC Lab: Challenges & Desafios"** do Centro Universitário de Brasília (CEUB).
+
